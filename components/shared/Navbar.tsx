@@ -2,17 +2,20 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ArrowUpRight } from 'lucide-react';
 
 const NAV_LINKS = [
   { name: 'Work', href: '/work' },
-  { name: 'Craft', href: '/#craft' },
-  { name: 'Team', href: '/#team' },
-  { name: 'Contact', href: '/#contact' },
+  { name: 'Craft', href: '/craft' },
+  { name: 'Team', href: '/team' },
+  { name: 'Contact', href: '/contact' },
 ];
 
 export function Navbar() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -34,9 +37,16 @@ export function Navbar() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           {/* Brand Logo */}
           <Link href="/" className="group flex items-center gap-3 focus:outline-none">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#F46C38] to-[#C5FF41] p-[1.5px] transition-transform duration-300 group-hover:scale-110 shadow-lg shadow-[#F46C38]/20">
-              <div className="w-full h-full bg-[#151312] rounded-[10px] flex items-center justify-center">
-                <span className="text-sm font-extrabold tracking-wider text-[#C5FF41] font-mono">S</span>
+            <div className="relative w-10 h-10 rounded-xl bg-gradient-to-br from-[#F46C38] to-[#C5FF41] p-[1.5px] transition-transform duration-300 group-hover:scale-110 shadow-lg shadow-[#F46C38]/20 overflow-hidden">
+              <div className="w-full h-full bg-[#000000] rounded-[10px] flex items-center justify-center overflow-hidden p-0.5">
+                <Image
+                  src="/logo.png"
+                  alt="Studio Logo"
+                  width={40}
+                  height={40}
+                  className="w-full h-full object-contain"
+                  priority
+                />
               </div>
             </div>
             <div className="flex flex-col">
@@ -47,22 +57,29 @@ export function Navbar() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-1 bg-[#1A1A1A]/90 backdrop-blur-xl px-4 py-1.5 rounded-full border border-[#242426] shadow-xl">
-            {NAV_LINKS.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                className="px-4 py-2 text-sm font-semibold text-[#998F8F] hover:text-[#FFFFFF] hover:bg-[#242426] rounded-full transition-all duration-200"
-              >
-                {link.name}
-              </Link>
-            ))}
+          <nav className="hidden md:flex items-center gap-1 bg-[#1A1A1A]/90 backdrop-blur-xl p-1.5 rounded-full border border-[#242426] shadow-xl">
+            {NAV_LINKS.map((link) => {
+              const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href));
+              return (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  className={`px-4 py-2 text-sm font-semibold rounded-full transition-all duration-200 ${
+                    isActive
+                      ? 'text-[#FFFFFF] border border-[#F46C38] bg-[#151312] shadow-sm'
+                      : 'text-[#998F8F] hover:text-[#FFFFFF] hover:bg-[#242426] border border-transparent'
+                  }`}
+                >
+                  {link.name}
+                </Link>
+              );
+            })}
           </nav>
 
           {/* CTA Action */}
           <div className="hidden md:flex items-center gap-4">
             <Link
-              href="/#contact"
+              href="/contact"
               className="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-wider px-5 py-2.5 rounded-full bg-[#F46C38] hover:bg-[#C5FF41] text-[#000000] transition-all duration-300 shadow-lg shadow-[#F46C38]/25 hover:scale-105"
             >
               <span>Get in touch</span>
@@ -92,18 +109,24 @@ export function Navbar() {
             className="fixed inset-x-0 top-[72px] z-40 md:hidden bg-[#151312]/98 backdrop-blur-2xl border-b border-[#242426] px-6 py-8 shadow-2xl"
           >
             <div className="flex flex-col gap-4">
-              {NAV_LINKS.map((link) => (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="text-lg font-bold text-[#FFFFFF] hover:text-[#C5FF41] transition-colors py-2 border-b border-[#242426]"
-                >
-                  {link.name}
-                </Link>
-              ))}
+              {NAV_LINKS.map((link) => {
+                const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href));
+                return (
+                  <Link
+                    key={link.name}
+                    href={link.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={`text-lg font-bold transition-colors py-2 border-b border-[#242426] flex items-center justify-between ${
+                      isActive ? 'text-[#F46C38]' : 'text-[#FFFFFF] hover:text-[#C5FF41]'
+                    }`}
+                  >
+                    <span>{link.name}</span>
+                    {isActive && <span className="w-2 h-2 rounded-full bg-[#F46C38]" />}
+                  </Link>
+                );
+              })}
               <Link
-                href="/#contact"
+                href="/contact"
                 onClick={() => setMobileMenuOpen(false)}
                 className="mt-4 flex items-center justify-center gap-2 text-sm font-extrabold uppercase tracking-wider py-3.5 rounded-xl bg-[#F46C38] text-[#000000] shadow-lg"
               >
