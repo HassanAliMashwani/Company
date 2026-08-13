@@ -11,8 +11,8 @@ export type TeamMember = {
 
 export const TEAM_MEMBERS: TeamMember[] = [
   {
-    id: 'aaabad-ahmed',
-    name: 'Aaabad Ahmed',
+    id: 'umer-liaqat',
+    name: 'Umer Liaqat',
     role: 'Lead Systems Architect',
     specialty: 'A Software Engineer who has developed countless innovative solutions.',
     stack: ['Next.js', 'TypeScript', 'Node.js', 'PostgreSQL'],
@@ -21,8 +21,8 @@ export const TEAM_MEMBERS: TeamMember[] = [
     linkedin: 'https://linkedin.com',
   },
   {
-    id: 'elena-rostova',
-    name: 'Elena Rostova',
+    id: 'hassan-ali',
+    name: 'Hassan Ali',
     role: 'AI / Machine Learning Engineer',
     specialty: 'Specializes in high-dimensional NLP vector embeddings and real-time computer vision.',
     stack: ['Python', 'FastAPI', 'PyTorch', 'OpenCV'],
@@ -31,8 +31,8 @@ export const TEAM_MEMBERS: TeamMember[] = [
     linkedin: 'https://linkedin.com',
   },
   {
-    id: 'marcus-vance',
-    name: 'Marcus Vance',
+    id: 'hadi-raza',
+    name: 'Hadi Raza',
     role: 'UI/UX & Product Designer',
     specialty: 'Crafts high-impact design token architectures and fluid interactive component systems.',
     stack: ['Figma', 'Design Systems', 'Framer Motion', 'CSS'],
@@ -41,8 +41,8 @@ export const TEAM_MEMBERS: TeamMember[] = [
     linkedin: 'https://linkedin.com',
   },
   {
-    id: 'sophia-chen',
-    name: 'Sophia Chen',
+    id: 'tayyab-atiq',
+    name: 'Tayyab Atiq',
     role: 'Backend & Cloud Engineer',
     specialty: 'Engineers fault-tolerant microservices, Stripe billing engines, and database infrastructure.',
     stack: ['Node.js', 'Supabase', 'Docker', 'Stripe'],
@@ -50,8 +50,8 @@ export const TEAM_MEMBERS: TeamMember[] = [
     github: 'https://github.com',
   },
   {
-    id: 'david-miller',
-    name: 'David Miller',
+    id: 'taifoor-farid',
+    name: 'Taifoor Farid',
     role: 'Frontend & Interactive Engineer',
     specialty: 'Focuses on 60FPS GSAP scroll choreography, Lenis smooth scroll, and WebGL accents.',
     stack: ['React', 'GSAP', 'Lenis', 'Tailwind CSS'],
@@ -59,8 +59,8 @@ export const TEAM_MEMBERS: TeamMember[] = [
     github: 'https://github.com',
   },
   {
-    id: 'sarah-jenkins',
-    name: 'Sarah Jenkins',
+    id: 'muhammad-shahzaib',
+    name: 'Muhammad Shahzaib',
     role: 'Client Partner & Product Strategist',
     specialty: 'Bridges technical engineering execution with client business goals and project delivery.',
     stack: ['Product Management', 'Scrum', 'Client Outreach'],

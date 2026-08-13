@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -9,25 +10,34 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 pb-8 border-b border-zinc-900">
           <div>
-            <Link href="/" className="text-lg font-bold tracking-tight text-white font-mono">
-              STUDIO<span className="text-cyan-400">.DEV</span>
+            <Link href="/" className="group inline-flex items-center gap-2.5 text-lg font-bold tracking-tight text-white font-mono">
+              <div className="w-6 h-6 rounded-lg overflow-hidden relative border border-[#242426]">
+                <Image
+                  src="/logo.png"
+                  alt="Studio Logo"
+                  width={24}
+                  height={24}
+                  className="w-full h-full object-contain bg-black"
+                />
+              </div>
+              <span>STUDIO<span className="text-[#C5FF41]">.DEV</span></span>
             </Link>
-            <p className="mt-1 text-sm text-zinc-400">
+            <p className="mt-1 text-sm text-[#998F8F]">
               Digital products · Design · Engineering · Proximity Systems
             </p>
           </div>
 
           <div className="flex flex-wrap gap-6 text-sm font-medium text-zinc-300">
-            <Link href="/work" className="hover:text-cyan-400 transition-colors">
+            <Link href="/work" className="hover:text-[#F46C38] transition-colors">
               Work
             </Link>
-            <Link href="/#craft" className="hover:text-cyan-400 transition-colors">
+            <Link href="/craft" className="hover:text-[#F46C38] transition-colors">
               Craft
             </Link>
-            <Link href="/#team" className="hover:text-cyan-400 transition-colors">
+            <Link href="/team" className="hover:text-[#F46C38] transition-colors">
               Team
             </Link>
-            <Link href="/#contact" className="hover:text-cyan-400 transition-colors">
+            <Link href="/contact" className="hover:text-[#F46C38] transition-colors">
               Contact
             </Link>
           </div>

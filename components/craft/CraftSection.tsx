@@ -34,7 +34,7 @@ const EASING_MODES = [
   { id: 'glow', label: 'Pulse Glow', scale: 1.0 },
 ];
 
-export function CraftSection() {
+export function CraftSection({ className = '' }: { className?: string }) {
   // Typography state
   const [fontWeight, setFontWeight] = useState<number>(700);
   const [fontSize, setFontSize] = useState<number>(24);
@@ -65,7 +65,7 @@ motion-type: ${selectedEasing.label};`;
   };
 
   return (
-    <section id="craft" className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-[#242426]">
+    <section id="craft" className={`py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-[#242426] ${className}`}>
       {/* Section Header */}
       <div className="mb-12">
         <span className="text-xs font-mono font-extrabold tracking-widest text-[#F46C38] uppercase">

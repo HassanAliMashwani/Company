@@ -1,12 +1,13 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { Github, Linkedin, Flame, Globe } from 'lucide-react';
 import { TEAM_MEMBERS } from '@/lib/team';
 
-export function TeamGrid() {
+export function TeamGrid({ className = '' }: { className?: string }) {
   return (
-    <section id="team" className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-[#242426]">
+    <section id="team" className={`py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-[#242426] ${className}`}>
       {/* Section Header */}
       <div className="mb-14 text-center max-w-2xl mx-auto">
         <span className="text-xs font-mono font-extrabold tracking-widest text-[#F46C38] uppercase">
@@ -123,13 +124,13 @@ export function TeamGrid() {
                     <Linkedin className="w-5 h-5" />
                   </a>
                 )}
-                <a
-                  href="#contact"
+                <Link
+                  href="/contact"
                   className={`${accentIconColor} hover:scale-110 transition-transform p-1`}
                   aria-label={`${member.name} Contact`}
                 >
                   <Globe className="w-5 h-5" />
-                </a>
+                </Link>
               </div>
             </div>
           );
