@@ -1,0 +1,25 @@
+## 01 — The Problem
+
+Curating music based on manual searching requires active effort. We explored how computer vision could unobtrusively detect facial expressions to trigger instant mood-based music curation.
+
+## 02 — The Approach
+
+Integrated real-time webcam frame processing with a PyTorch facial landmark classification network:
+
+1. **Facial Detection**: Extracted face coordinates using OpenCV Haar Cascades.
+2. **Emotion Classification**: Passed landmark frames into a PyTorch CNN trained on the FER2013 dataset.
+3. **Spotify API Trigger**: Mapped classified emotions (happy, calm, energetic, reflective) to tailored Spotify audio profiles.
+
+## 03 — The Interface
+
+Live webcam feed with a glowing face-tracking mesh bounding box and dynamic emotion probability bars.
+
+## 04 — The Build
+
+Built with Python, OpenCV, PyTorch, FastAPI, and React with Tailwind CSS.
+
+> *"We benchmarked frame processing at 30FPS using OpenCV downsampling to maintain smooth client video rendering without GPU overload."*
+
+## 05 — The Result
+
+Achieved 91.4% emotion classification accuracy on benchmark testing sets, serving as an interactive studio showcase piece.

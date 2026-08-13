@@ -1,0 +1,46 @@
+## 01 — The Problem
+
+Job seekers frequently receive automated rejections from legacy Applicant Tracking Systems (ATS) without clear feedback on skill gaps or formatting errors. Traditional resume evaluation tools provide vague score percentages without actionable data on missing technical keywords or role alignment.
+
+<ProblemVsSolutionCard />
+
+## 02 — The Approach
+
+We built an end-to-end NLP analysis engine that parses complex PDF layouts and compares extracted candidate embeddings against real job postings:
+
+1. **Document Ingestion**: Built a robust PDF/DocX structural parser capable of extracting multi-column resumes.
+2. **Entity Recognition & Embedding**: Extracted candidate skills, years of experience, and achievements using custom NLP models.
+3. **Similarity Scoring**: Computed cosine similarity across vector embeddings of job descriptions and candidate profiles.
+4. **Interactive Dashboard**: Designed a high-contrast breakdown highlighting exact missing skills and impact verbs.
+
+<FormattingAuditorWidget />
+
+## 03 — The Interface
+
+The user interface presents complex vector match scores through clear, structured visual hierarchy:
+
+- **Match Score Card**: Radial progress ring visualizing overall ATS match score.
+- **Skill Gap Matrix**: Side-by-side comparison table categorizing matched, partial, and missing keywords.
+- **Formatting Auditor**: Interactive document preview highlighting problematic fonts, missing dates, or unparseable tables.
+
+<AtsScoreWidget />
+
+<SkillGapMatrixWidget />
+
+## 04 — The Build
+
+We decoupled the heavy NLP vector math into a Python FastAPI backend while building the interactive UI in Next.js 14.
+
+> *"Decoupling the Python FastAPI NLP engine from Next.js allowed us to run CPU-intensive transformer embeddings asynchronously while maintaining instant 60FPS UI feedback on the client."*
+
+- **Frontend**: Next.js 14, Tailwind CSS, Lucide Icons
+- **AI Core**: Python, FastAPI, SpaCy, Sentence-Transformers
+- **Database**: PostgreSQL (pgvector)
+
+<ArchitectureDiagramWidget />
+
+## 05 — The Result
+
+Successfully launched as a production product, parsing over 1,200+ candidate resumes during initial beta rollout with positive feedback on keyword accuracy.
+
+<ResultMetricsGrid />

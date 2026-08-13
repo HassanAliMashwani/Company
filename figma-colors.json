@@ -1,0 +1,48 @@
+{
+  "name": "Studio Production Token System",
+  "version": "1.0.0",
+  "coreBrand": {
+    "primaryAccent": "#F46C38",
+    "highImpactAccent": "#C5FF41",
+    "secondaryAccent": "#0000EE",
+    "backgroundBase": "#151312",
+    "surface": "#1A1A1A",
+    "border": "#242426",
+    "headingText": "#FFFFFF",
+    "bodyMutedText": "#998F8F",
+    "contrastText": "#000000"
+  },
+  "semantic": {
+    "success": "#C5FF41",
+    "warning": "#F59E0B",
+    "error": "#FF2600",
+    "info": "#0000EE"
+  },
+  "interaction": {
+    "primaryHover": "#E05B28",
+    "primaryActive": "#CC4F1F",
+    "secondaryHover": "#B5EE30",
+    "secondaryActive": "#A2D824",
+    "focusRing": "#F46C38",
+    "focusRingOffset": "#151312",
+    "selectionBg": "#F46C38",
+    "selectionText": "#000000"
+  },
+  "elevation": {
+    "surface1": "#151312",
+    "surface2": "#1A1A1A",
+    "surface3": "#242426",
+    "cardHover": "#2A2A2E"
+  },
+  "typography": {
+    "heading": "#FFFFFF",
+    "body": "#FFFFFF",
+    "muted": "#998F8F",
+    "subtle": "#767676"
+  },
+  "gradients": {
+    "accentGradientText": "linear-gradient(135deg, #FFFFFF 0%, #F46C38 100%)",
+    "gradientFunky": "linear-gradient(135deg, #F46C38 0%, #C5FF41 50%, #FFFFFF 100%)",
+    "limeGradientText": "linear-gradient(135deg, #C5FF41 0%, #FFFFFF 100%)"
+  }
+}

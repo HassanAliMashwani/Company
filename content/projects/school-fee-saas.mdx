@@ -1,0 +1,34 @@
+## 01 — The Problem
+
+Private school administrators were spending dozens of hours each month manually generating PDF fee vouchers, tracking cash receipts, and reconciling overdue tuition payments across multiple grade levels. Existing financial software was overly complex and lacked localized parent notification options.
+
+## 02 — The Approach
+
+We automated the entire billing lifecycle into a multi-tenant web platform:
+
+1. **Tuition Structure Engine**: Allowed admins to set custom recurring fee tiers, transportation add-ons, and financial aid discounts.
+2. **Automated Voucher Generation**: Programmatically generated digital invoices with unique QR codes for instant bank verification.
+3. **Stripe Payment Gateway**: Integrated seamless credit card and online banking gateways.
+4. **Parent Portal**: Built a mobile-friendly self-service portal for instant payment and receipt downloads.
+
+## 03 — The Interface
+
+Clean, trustworthy financial interface engineered for clarity and high accessibility:
+
+- **Admin Ledger Dashboard**: Real-time revenue charts, collection percentages, and overdue account filters.
+- **Parent Payment Screen**: One-click tuition checkout with instant SMS and email receipt dispatch.
+- **Mobile Statement View**: Optimized mobile voucher preview formatted for printing or PDF export.
+
+## 04 — The Build
+
+Built with Next.js 14, Stripe Billing, and PostgreSQL managed via Prisma ORM for transaction safety.
+
+> *"We chose Prisma and PostgreSQL transactions to guarantee ACID compliance during concurrent multi-student invoice bulk actions."*
+
+- **Core Stack**: Next.js 14, Tailwind CSS, Prisma, PostgreSQL
+- **Payments**: Stripe Checkout & Webhooks
+- **Notifications**: Resend API & Twilio
+
+## 05 — The Result
+
+Deployed across regional private school systems, successfully processing over $450,000 in total automated recurring tuition billing with zero reconciliation errors.

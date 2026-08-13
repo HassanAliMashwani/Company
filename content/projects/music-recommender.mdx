@@ -1,0 +1,25 @@
+## 01 — The Problem
+
+Standard streaming recommendation algorithms often trap listeners in repetitive popularity loops. Users wanted a discovery tool that prioritized acoustic audio features (danceability, valence, energy) over artist popularity metrics.
+
+## 02 — The Approach
+
+We developed a content-filtering algorithm based on high-dimensional audio vector similarity:
+
+1. **Feature Extraction**: Extracted 12 acoustic attributes per track using the Spotify Web API.
+2. **Nearest Neighbors Model**: Trained a Scikit-learn K-NN model to calculate cosine distance across audio feature vectors.
+3. **Interactive UI**: Built a mood-slider matrix allowing users to dynamically tweak target energy and valence.
+
+## 03 — The Interface
+
+Minimalist audio control interface featuring dark waveform styling and live track previews.
+
+## 04 — The Build
+
+Engineered with React, Python FastAPI, and Scikit-learn.
+
+> *"Using FastAPI with Scikit-learn allowed sub-50ms vector distance lookups across thousands of Spotify track feature profiles."*
+
+## 05 — The Result
+
+Shipped as an active studio R&D prototype, demonstrating fast audio feature filtering and custom playlist exports.
