@@ -19,7 +19,7 @@ const monoFont = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'STUDIO.DEV — Software Engineering & Product Design Studio',
+  title: 'AXIORA — Software Engineering & Product Design Studio',
   description:
     'A small engineering studio building high-impact digital products, AI systems, and interactive web applications.',
 };

@@ -5,7 +5,7 @@ import { SlidersHorizontal, CheckCircle2, AlertCircle, Loader2 } from 'lucide-re
 
 export function ComponentDemo() {
   const [toggleActive, setToggleActive] = useState<boolean>(true);
-  const [inputValue, setInputValue] = useState<string>('user@studio.dev');
+  const [inputValue, setInputValue] = useState<string>('user@axiora.dev');
   const [btnState, setBtnState] = useState<'idle' | 'loading' | 'success'>('idle');
 
   const isValidEmail = inputValue.includes('@') && inputValue.includes('.');

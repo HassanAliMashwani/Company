@@ -55,6 +55,12 @@ const CAPABILITIES: Capability[] = [
     tagFilter: 'Web',
     description: '60FPS GSAP scroll choreography, Lenis smooth scrolling, and Framer Motion UI states.',
   },
+  {
+    id: '08',
+    title: 'Marketing & Growth',
+    tagFilter: 'Marketing',
+    description: 'Data-driven go-to-market strategies, conversion rate optimization (CRO), programmatic SEO architectures, and viral loop acquisition funnels.',
+  },
 ];
 
 export function CapabilityMatrix() {

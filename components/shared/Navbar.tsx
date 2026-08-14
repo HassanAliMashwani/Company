@@ -37,21 +37,19 @@ export function Navbar() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           {/* Brand Logo */}
           <Link href="/" className="group flex items-center gap-3 focus:outline-none">
-            <div className="relative w-10 h-10 rounded-xl bg-gradient-to-br from-[#F46C38] to-[#C5FF41] p-[1.5px] transition-transform duration-300 group-hover:scale-110 shadow-lg shadow-[#F46C38]/20 overflow-hidden">
-              <div className="w-full h-full bg-[#000000] rounded-[10px] flex items-center justify-center overflow-hidden p-0.5">
-                <Image
-                  src="/logo.png"
-                  alt="Studio Logo"
-                  width={40}
-                  height={40}
-                  className="w-full h-full object-contain"
-                  priority
-                />
-              </div>
+            <div className="relative w-9 h-9 flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
+              <Image
+                src="/94e6de8e-7e88-49dc-8aa0-b62d06ce6c48.png"
+                alt="AXIORA Logo"
+                width={36}
+                height={36}
+                className="w-full h-full object-contain"
+                priority
+              />
             </div>
             <div className="flex flex-col">
-              <span className="font-extrabold text-base tracking-tight text-[#FFFFFF] group-hover:text-[#F46C38] transition-colors">
-                STUDIO<span className="text-[#C5FF41] font-mono">.DEV</span>
+              <span className="font-extrabold text-lg tracking-tight text-[#FFFFFF] group-hover:text-[#F46C38] transition-colors">
+                AXIORA
               </span>
             </div>
           </Link>
@@ -60,6 +58,7 @@ export function Navbar() {
           <nav className="hidden md:flex items-center gap-1 bg-[#1A1A1A]/90 backdrop-blur-xl p-1.5 rounded-full border border-[#242426] shadow-xl">
             {NAV_LINKS.map((link) => {
               const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href));
+
               return (
                 <Link
                   key={link.name}
@@ -70,7 +69,7 @@ export function Navbar() {
                       : 'text-[#998F8F] hover:text-[#FFFFFF] hover:bg-[#242426] border border-transparent'
                   }`}
                 >
-                  {link.name}
+                  <span>{link.name}</span>
                 </Link>
               );
             })}
@@ -111,6 +110,7 @@ export function Navbar() {
             <div className="flex flex-col gap-4">
               {NAV_LINKS.map((link) => {
                 const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href));
+
                 return (
                   <Link
                     key={link.name}
