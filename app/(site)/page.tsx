@@ -63,10 +63,10 @@ export default function HomePage() {
       {/* 4. Capabilities Matrix */}
       <CapabilityMatrix />
 
-      {/* 5. Team Section */}
+      {/* 6. Team Section */}
       <TeamGrid />
 
-      {/* 6. Contact Section */}
+      {/* 7. Contact Section */}
       <ContactForm />
     </div>
   );

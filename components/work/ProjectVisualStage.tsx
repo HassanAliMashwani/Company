@@ -107,7 +107,7 @@ export function ProjectVisualStage({ project, isHovered = false }: ProjectVisual
             </div>
             <div className="flex items-center gap-1 opacity-70">
               <Monitor className="w-3 h-3 text-[#F46C38]" />
-              <span className="truncate max-w-[140px]">{project.slug}.studio.dev</span>
+              <span className="truncate max-w-[140px]">{project.slug}.axiora.dev</span>
             </div>
           </div>
 

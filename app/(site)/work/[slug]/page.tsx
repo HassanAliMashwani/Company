@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   if (!project) return { title: 'Project Not Found' };
 
   return {
-    title: `${project.name} Case Study — STUDIO.DEV`,
+    title: `${project.name} Case Study — AXIORA`,
     description: project.summary,
   };
 }
