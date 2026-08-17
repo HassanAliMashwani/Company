@@ -34,6 +34,9 @@ export function Footer() {
             <Link href="/craft" className="hover:text-[#F46C38] transition-colors">
               Craft
             </Link>
+            <Link href="/marketing" className="hover:text-[#F46C38] transition-colors">
+              Marketing
+            </Link>
             <Link href="/team" className="hover:text-[#F46C38] transition-colors">
               Team
             </Link>
