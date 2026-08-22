@@ -1,0 +1,40 @@
+## 01 — The Problem
+
+Athletes, runners, and urban commuters often encounter fitness tracking apps that suffer from heavy battery drain, delayed GPS telemetry ingestion, and sluggish route search across massive historical datasets. Existing platforms either lock essential route analysis behind restrictive paywalls or fail to deliver sub-second segment search and low-latency social feeds during high-traffic events.
+
+## 02 — The Approach
+
+We architected TrackMate as a high-throughput, distributed telemetry and community platform built to handle continuous geospatial streaming at scale:
+
+1. **Distributed Time-Series Pipeline**: Deployed ScyllaDB to ingest millions of high-frequency GPS coordinate points with ultra-low latency write throughput.
+2. **Geospatial Route Indexing**: Integrated Elasticsearch to power sub-10ms full-text and radius-based bounding-box route discovery.
+3. **Battery-Optimized Mobile Telemetry**: Engineered custom Flutter background service listeners balancing GPS accuracy with low mobile battery consumption.
+4. **Real-Time Community & Leaderboards**: Implemented Redis cache clusters to serve instant live segment leaderboards, kudos reactions, and active group feeds.
+
+## 03 — The Interface
+
+Engineered with a high-contrast dark aesthetic tuned for outdoor visibility and quick glances during intensive training:
+
+- **Telemetry Dashboard**: High-visibility HUD showing real-time speed, total distance, elevation gain, and elapsed time with ambient orange status indicators.
+- **3D Satellite Route Map**: Immersive satellite mapping layer with interactive journey breadcrumbs, terrain contours, and altitude cross-sections.
+- **Community Feed**: Live activity stream featuring route snapshots, shared vibes, athlete comments, and group challenges.
+- **Athlete Profile & Heatmap**: Comprehensive lifetime mileage analytics, CO2 savings calculator, weekly fitness trend graphs, and instant QR sharing.
+
+## 04 — The Build
+
+Built on an enterprise distributed architecture combining Spring Boot microservices with specialized multi-database persistence:
+
+> *"Utilizing ScyllaDB for time-series telemetry alongside PostgreSQL for transactional data allowed us to ingest high-rate GPS streams without degrading relational queries."*
+
+- **Mobile Client**: Flutter (Cross-platform iOS & Android)
+- **Web Platform**: Next.js, Tailwind CSS, Framer Motion
+- **Backend Core**: Spring Boot (Java / Microservices)
+- **Databases**:
+  - **PostgreSQL**: User profiles, relations, authentication
+  - **ScyllaDB**: High-throughput GPS time-series telemetry
+  - **Redis**: Real-time leaderboards, activity caching
+  - **Elasticsearch**: Full-text route and segment spatial indexing
+
+## 05 — The Result
+
+Deployed live at [trackmate.page](https://www.trackmate.page/), TrackMate delivers seamless journey logging, instant route discovery, and real-time community engagement for athletes and commuter networks.

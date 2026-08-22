@@ -1,0 +1,38 @@
+## 01 — The Problem
+
+Urban recycling remains heavily fragmented. Households lack clear guidance on how to classify recyclable materials, while municipal collectors and recycling warehouses struggle with unpredictable supply schedules, inefficient route planning, and manual inventory tracking. Without an interconnected platform, valuable post-consumer plastics, metals, and paper end up in landfills rather than circular supply chains.
+
+## 02 — The Approach
+
+We engineered an AI-powered end-to-end circular economy ecosystem that bridges households, mobile waste collectors, intermediate collection hubs, and industrial recycling plants:
+
+1. **AI Computer Vision Pipeline**: Trained on-device TensorFlow and OpenCV classification models to detect and grade recyclable materials (PET, HDPE, aluminum, cardboard, e-waste) directly from smartphone cameras.
+2. **Multi-Tenant Logistics Marketplace**: Built differentiated role-based portals for households, collectors, sorting warehouses, and corporate recycling buyers.
+3. **Dynamic Spatial Routing**: Integrated Mapbox SDK for optimized collector pickup routes and real-time proximity dispatch.
+4. **Automated Escrow & Incentive Engine**: Implemented Stripe Connect for verified cash payouts and a GreenCycle points ledger rewarding consistent recycling behavior.
+
+## 03 — The Interface
+
+The product experience balances accessible consumer simplicity with robust enterprise logistics workflows:
+
+- **AI Waste Scanner**: Real-time camera viewfinder that detects material type, displays recycling impact metrics, and calculates instant point estimates.
+- **Collector Dispatch Dashboard**: Interactive vector map with color-coded pickup requests, turn-by-turn navigation, and batch weight confirmation.
+- **Warehouse Material Ledger**: Bulk intake scanning interface tracking commodity weights, purity grades, and automated supplier settlements.
+- **Consumer Impact Hub**: Visualized personal carbon offset, landfill diversion statistics, and gift card redemption portal.
+
+## 04 — The Build
+
+A high-performance hybrid architecture combining Flutter for responsive mobile clients with Node.js/Express and PostgreSQL for high-concurrency order settlement.
+
+> *"Pairing lightweight on-device TensorFlow models with Mapbox spatial routing allowed collectors to verify recyclable purity at the doorstep while shaving 30% off average daily route distances."*
+
+- **Mobile Client**: Flutter (Cross-platform iOS & Android)
+- **Web & Dashboards**: Next.js, Tailwind CSS
+- **Backend & APIs**: Node.js, Express.js, PostgreSQL
+- **AI & Computer Vision**: TensorFlow, OpenCV
+- **Real-Time & Geo**: Mapbox GL, Firebase Cloud Messaging (FCM)
+- **Payments**: Stripe Connect & Escrow Webhooks
+
+## 05 — The Result
+
+Deployed to production at [recyconnect.ranatayyab.dev](https://recyconnect.ranatayyab.dev/), RecyConnect connects hundreds of active households with verified local waste aggregators, driving measurable circular economy adoption and automated recycling transparency.

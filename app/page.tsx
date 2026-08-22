@@ -1,7 +1,7 @@
 import React from 'react';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
-import { ArrowRight, Layers } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { Hero } from '@/components/hero/Hero';
 import { ProjectCard } from '@/components/work/ProjectCard';
 import { CapabilityMatrix } from '@/components/capabilities/CapabilityMatrix';
@@ -23,7 +23,8 @@ const CraftSection = dynamic(
 );
 
 export default function HomePage() {
-  const featuredProjects = PROJECTS.filter((p) => p.tier === 'major');
+  // Only show the top 3 featured projects on the homepage
+  const featuredProjects = PROJECTS.slice(0, 3);
 
   return (
     <div className="space-y-12">
@@ -34,7 +35,7 @@ export default function HomePage() {
       <section id="work" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-zinc-800/80">
         <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 mb-12">
           <div>
-            <span className="text-xs font-mono font-semibold tracking-widest text-cyan-400 uppercase">
+            <span className="text-xs font-mono font-semibold tracking-widest text-[#F46C38] uppercase">
               Featured Case Studies
             </span>
             <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-white mt-2">
@@ -43,9 +44,9 @@ export default function HomePage() {
           </div>
           <Link
             href="/work"
-            className="inline-flex items-center gap-2 text-sm font-mono text-cyan-400 hover:text-cyan-300 font-semibold"
+            className="inline-flex items-center gap-2 text-sm font-mono text-[#F46C38] hover:text-[#C5FF41] font-semibold transition-colors"
           >
-            <span>Explore All Projects</span>
+            <span>Explore All Projects ({PROJECTS.length})</span>
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
@@ -54,6 +55,17 @@ export default function HomePage() {
           {featuredProjects.map((project, idx) => (
             <ProjectCard key={project.slug} project={project} index={idx} isAlternating={true} />
           ))}
+        </div>
+
+        {/* View All Projects Button Below the 3 Projects */}
+        <div className="mt-14 text-center">
+          <Link
+            href="/work"
+            className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-[#151312] hover:bg-[#F46C38] text-[#FFFFFF] hover:text-[#000000] font-mono text-sm font-bold tracking-wider uppercase border border-[#242426] hover:border-[#F46C38] transition-all duration-300 shadow-xl shadow-black/50 hover:shadow-[#F46C38]/20 group"
+          >
+            <span>View All Projects ({PROJECTS.length})</span>
+            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+          </Link>
         </div>
       </section>
 

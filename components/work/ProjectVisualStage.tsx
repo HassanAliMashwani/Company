@@ -42,13 +42,13 @@ export function ProjectVisualStage({ project, isHovered = false }: ProjectVisual
       )
         .fromTo(
           desktopFrameRef.current,
-          { scale: 0.97, opacity: 0.9 },
+          { scale: 0.98, opacity: 0.9 },
           { scale: 1, opacity: 1, duration: 0.5, ease: 'power2.out' },
           '-=0.4'
         )
         .fromTo(
           mobileFrameRef.current,
-          { x: 16, opacity: 0.8 },
+          { x: 12, opacity: 0.8 },
           { x: 0, opacity: 1, duration: 0.5, ease: 'power2.out' },
           '-=0.3'
         );
@@ -57,22 +57,34 @@ export function ProjectVisualStage({ project, isHovered = false }: ProjectVisual
     return () => ctx.revert();
   }, []);
 
+  const isRealImage =
+    Boolean(project.desktopImage) &&
+    (project.desktopImage.startsWith('/') || project.desktopImage.startsWith('http'));
+
+  const isRealMobileImage =
+    Boolean(project.mobileImage) &&
+    (project.mobileImage.startsWith('/') || project.mobileImage.startsWith('http'));
+
+  const displayUrl = project.liveUrl
+    ? project.liveUrl.replace(/^https?:\/\//, '').replace(/\/$/, '')
+    : `${project.slug}.axiora.dev`;
+
   return (
     <div
       ref={containerRef}
-      className="relative w-full h-full min-h-[380px] sm:min-h-[440px] bg-[#151312] p-6 sm:p-8 flex flex-col justify-between overflow-hidden rounded-2xl border border-[#242426]"
+      className="relative w-full bg-[#151312] p-4 sm:p-5 flex flex-col justify-between overflow-hidden rounded-2xl border border-[#242426] min-w-0"
     >
-      {/* Layer 2: Ambient Glow Layer */}
+      {/* Ambient Glow Layer */}
       <div
         className={`absolute inset-0 bg-gradient-to-tr ${
           project.tier === 'major'
             ? 'from-[#F46C38]/15 via-transparent to-[#C5FF41]/10'
             : 'from-[#C5FF41]/10 via-transparent to-[#0000EE]/10'
-        } transition-opacity duration-500 ${isHovered ? 'opacity-100' : 'opacity-50'}`}
+        } transition-opacity duration-500 pointer-events-none ${isHovered ? 'opacity-100' : 'opacity-40'}`}
       />
 
-      {/* Layer 5: Top Badge Strip */}
-      <div className="relative z-20 flex items-center justify-between gap-4 mb-4">
+      {/* Top Badge Strip */}
+      <div className="relative z-20 flex flex-wrap items-center justify-between gap-2 mb-3 min-w-0">
         <span
           className={`text-[10px] font-mono font-extrabold px-3 py-1 rounded-full uppercase tracking-wider border shadow-sm ${
             project.tier === 'major'
@@ -84,75 +96,104 @@ export function ProjectVisualStage({ project, isHovered = false }: ProjectVisual
         </span>
 
         {project.outcome && (
-          <span className="hidden sm:inline-flex items-center gap-1.5 text-[10px] font-mono font-bold text-[#C5FF41] bg-[#1A1A1A] border border-[#242426] px-2.5 py-0.5 rounded-md">
-            <Award className="w-3 h-3 text-[#F46C38]" />
-            <span className="truncate max-w-[200px]">{project.outcome}</span>
+          <span className="hidden sm:inline-flex items-center gap-1.5 text-[10px] font-mono font-bold text-[#C5FF41] bg-[#1A1A1A] border border-[#242426] px-2.5 py-0.5 rounded-md max-w-[240px]">
+            <Award className="w-3 h-3 text-[#F46C38] flex-shrink-0" />
+            <span className="truncate">{project.outcome}</span>
           </span>
         )}
       </div>
 
-      {/* Layer 3: Device Stack Layer */}
-      <div className="relative z-10 w-full my-auto flex items-center justify-center py-4">
-        {/* Desktop Mockup Frame (Back) */}
+      {/* Main Showcase Stage (Desktop Webview with Mobile Device Showcase beside it) */}
+      <div className="relative z-10 w-full flex items-center justify-center my-1 min-w-0">
+        {/* Desktop Webview Frame */}
         <div
           ref={desktopFrameRef}
-          className="relative w-full max-w-[480px] aspect-[16/10] bg-[#1A1A1A] rounded-xl border border-[#242426] shadow-2xl overflow-hidden flex flex-col transition-transform duration-300"
+          className="relative w-full bg-[#1A1A1A] rounded-xl border border-[#242426] shadow-2xl overflow-hidden flex flex-col transition-all duration-300 group-hover:border-[#F46C38]/40 min-w-0"
         >
-          {/* Desktop Window Topbar */}
-          <div className="h-6 bg-[#151312] border-b border-[#242426] px-3 flex items-center justify-between text-[10px] font-mono text-[#998F8F]">
+          {/* Browser Window Topbar */}
+          <div className="h-7 bg-[#121110] border-b border-[#242426] px-3.5 flex items-center justify-between text-[11px] font-mono text-[#998F8F] shrink-0">
             <div className="flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-[#FF2600]/80" />
-              <span className="w-2 h-2 rounded-full bg-amber-500/80" />
-              <span className="w-2 h-2 rounded-full bg-emerald-500/80" />
+              <span className="w-2.5 h-2.5 rounded-full bg-[#FF2600]/80" />
+              <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
+              <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
             </div>
-            <div className="flex items-center gap-1 opacity-70">
+            <div className="flex items-center gap-1.5 px-3 py-0.5 rounded-md bg-[#181716] border border-[#242426] text-[10px] opacity-85 text-zinc-300">
               <Monitor className="w-3 h-3 text-[#F46C38]" />
-              <span className="truncate max-w-[140px]">{project.slug}.axiora.dev</span>
+              <span className="truncate max-w-[180px] sm:max-w-[260px]">{displayUrl}</span>
             </div>
+            <div className="w-6" />
           </div>
 
-          {/* Desktop Screenshot Canvas */}
-          <div className="flex-1 bg-[#0b0914] p-4 flex flex-col items-center justify-center text-center relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-b from-[#F46C38]/5 via-transparent to-transparent pointer-events-none" />
-            <span className="text-[10px] font-mono font-bold text-[#FFFFFF] bg-[#1A1A1A] border border-[#242426] px-3 py-1 rounded-md mb-1 shadow">
-              {project.name} Desktop View
-            </span>
-            <span className="text-[9px] font-mono text-[#998F8F] max-w-xs">
-              {project.desktopImage}
-            </span>
-          </div>
+          {/* Browser Viewport Canvas (Displays Full Image Without Cropping) */}
+          {isRealImage ? (
+            <div className="relative w-full bg-[#0a0a0c] overflow-hidden">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={project.desktopImage}
+                alt={`${project.name} Full Web View`}
+                className="w-full h-auto block object-contain transition-transform duration-500 ease-out group-hover:scale-[1.01]"
+                loading="lazy"
+              />
+            </div>
+          ) : (
+            <div className="w-full aspect-[16/9] bg-[#0b0914] p-4 flex flex-col items-center justify-center text-center relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-b from-[#F46C38]/5 via-transparent to-transparent pointer-events-none" />
+              <span className="text-[10px] font-mono font-bold text-[#FFFFFF] bg-[#1A1A1A] border border-[#242426] px-3 py-1 rounded-md mb-1 shadow">
+                {project.name} Desktop View
+              </span>
+              <span className="text-[9px] font-mono text-[#998F8F] max-w-xs">
+                {project.desktopImage}
+              </span>
+            </div>
+          )}
         </div>
 
-        {/* Mobile Mockup Frame (Front, Offset Right) */}
+        {/* Mobile Device Frame (Offset Front Right) */}
         <motion.div
           ref={mobileFrameRef}
-          animate={{ x: isHovered && !reducedMotion ? -4 : 0, y: isHovered && !reducedMotion ? -4 : 0 }}
+          animate={{
+            x: isHovered && !reducedMotion ? -3 : 0,
+            y: isHovered && !reducedMotion ? -3 : 0,
+          }}
           transition={{ duration: 0.3 }}
-          className="absolute -right-2 sm:right-2 -bottom-2 w-[110px] sm:w-[135px] aspect-[9/18] bg-[#1A1A1A] rounded-2xl border-2 border-[#242426] shadow-2xl overflow-hidden flex flex-col z-20"
+          className="absolute -right-2 sm:-right-1 -bottom-2 w-[88px] sm:w-[110px] aspect-[9/18.5] bg-[#121110] rounded-2xl border-2 border-[#242426] shadow-2xl overflow-hidden flex flex-col z-20 pointer-events-none group-hover:border-[#F46C38]/60 transition-colors"
         >
           {/* Mobile Notch */}
-          <div className="h-4 bg-[#151312] border-b border-[#242426] flex items-center justify-center">
-            <div className="w-8 h-1 rounded-full bg-[#242426]" />
+          <div className="h-3.5 bg-[#121110] border-b border-[#242426]/60 flex items-center justify-center shrink-0 z-10">
+            <div className="w-6 h-1 rounded-full bg-[#242426]" />
           </div>
 
-          {/* Mobile Screenshot Canvas */}
-          <div className="flex-1 bg-[#0b0914] p-2 flex flex-col items-center justify-center text-center relative">
-            <Smartphone className="w-4 h-4 text-[#C5FF41] mb-1" />
-            <span className="text-[8px] font-mono text-[#998F8F] leading-tight">
-              {project.mobileImage}
-            </span>
-          </div>
+          {/* Mobile Screen (Real screenshot if provided, otherwise clean placeholder) */}
+          {isRealMobileImage ? (
+            <div className="flex-1 relative w-full h-full bg-[#0a0a0c] overflow-hidden">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={project.mobileImage}
+                alt={`${project.name} Mobile Preview`}
+                className="w-full h-full object-cover object-top block transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent pointer-events-none" />
+            </div>
+          ) : (
+            <div className="flex-1 bg-gradient-to-b from-[#181716] via-[#100f13] to-[#0a0a0c] p-1.5 flex flex-col items-center justify-center text-center relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-tr from-[#F46C38]/10 via-transparent to-[#C5FF41]/10" />
+              <Smartphone className="w-4 h-4 text-zinc-600 mb-1" />
+              <div className="w-8 h-1 rounded bg-[#242426] mb-1" />
+              <div className="w-5 h-1 rounded bg-[#242426]" />
+            </div>
+          )}
         </motion.div>
       </div>
 
-      {/* Layer 4: Micro Info Chips Layer */}
-      <div className="relative z-20 flex flex-wrap items-center gap-1.5 pt-2">
+      {/* Micro Info Chips Layer */}
+      <div className="relative z-20 flex flex-wrap items-center gap-1.5 pt-3 min-w-0">
         {project.visualLabels.map((label) => (
           <span
             key={label}
             className="text-[9px] font-mono font-semibold px-2.5 py-1 rounded-md bg-[#1A1A1A]/90 text-[#FFFFFF] border border-[#242426] shadow-sm flex items-center gap-1"
           >
-            <Sparkles className="w-2.5 h-2.5 text-[#F46C38]" />
+            <Sparkles className="w-2.5 h-2.5 text-[#F46C38] flex-shrink-0" />
             <span>{label}</span>
           </span>
         ))}

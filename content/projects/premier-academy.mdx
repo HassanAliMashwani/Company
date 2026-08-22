@@ -1,0 +1,37 @@
+## 01 — The Problem
+
+Premier Academy Tax & Accounting School was handling thousands of active students across disparate communication channels, unorganized cloud drives, and manual Zoom meeting links. Instructors spent hours manually checking attendance and re-uploading recorded lectures, while students lacked a centralized dashboard to track course progress, submit assignments, and access live classes securely.
+
+## 02 — The Approach
+
+We designed and built an enterprise-grade Learning Management System (LMS) tailored for professional education and live interactive learning:
+
+1. **Native Zoom Video Bridge**: Integrated Zoom Server-to-Server APIs to automate scheduled live webinars, automatic breakout rooms, and webhook-driven attendance auditing.
+2. **Modular Course Engine**: Built a flexible curriculum architect supporting tiered video modules, downloadable tax case studies, and timed MCQ assessments.
+3. **Encrypted Video Streaming**: Implemented adaptive bitrate streaming with dynamic watermarks to protect proprietary educational IP.
+4. **Student Lifecycle Automation**: Automated course enrollment, milestone tracking, prerequisite locking, and verifiable digital certificate issuance.
+
+## 03 — The Interface
+
+Designed for focus, clarity, and rapid access across both desktop and tablet environments:
+
+- **Student Learning Hub**: Clean video player interface featuring searchable video transcriptions, downloadable practice files, and real-time live class countdowns.
+- **Instructor Command Center**: Single-pane dashboard for scheduling multi-week cohorts, monitoring assignment submissions, and reviewing student engagement graphs.
+- **Live Class Lobby**: One-click Zoom join portal with automated microphone/camera check and synchronized live class notes.
+- **Certificate Verification Portal**: Publicly verifiable credential page with cryptographic hashes for employer validation.
+
+## 04 — The Build
+
+Built using Next.js on the frontend for high-speed server-rendered course discovery, paired with a robust NestJS backend and PostgreSQL database for reliable transactional consistency.
+
+> *"Integrating NestJS event-driven webhooks with the Zoom API allowed us to automatically verify student attendance thresholds before unlocking course final examinations."*
+
+- **Frontend**: Next.js App Router, Tailwind CSS, Framer Motion
+- **Backend**: NestJS (TypeScript), REST APIs, WebSockets
+- **Database**: PostgreSQL with connection pooling
+- **Integrations**: Zoom REST API & Webhooks, AWS S3 / Cloudflare Stream
+- **Authentication**: JWT with Role-Based Access Control (RBAC)
+
+## 05 — The Result
+
+Deployed live at [premier-lms-frontend.vercel.app](https://premier-lms-frontend.vercel.app/), powering digital learning for over 25,000+ professional tax and accounting students across 120+ accredited courses.

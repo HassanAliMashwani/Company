@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { PROJECTS } from '@/lib/projects';
 import { ProjectCard } from '@/components/work/ProjectCard';
 
-const FILTER_TAGS = ['ALL', 'WEB', 'AI/ML', 'SAAS', 'DESIGN', 'MARKETING'] as const;
+const FILTER_TAGS = ['ALL', 'WEB', 'MOBILE', 'AI/ML', 'SAAS', 'DESIGN', 'MARKETING'] as const;
 
 export default function WorkArchivePage() {
   const [activeFilter, setActiveFilter] = useState<string>('ALL');
