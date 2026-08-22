@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { Github, Linkedin, Flame, Globe } from 'lucide-react';
 import { TEAM_MEMBERS } from '@/lib/team';
@@ -36,11 +37,15 @@ export function TeamGrid({ className = '' }: { className?: string }) {
           const badgeBg = isOrangeAccent ? 'bg-[#C5FF41]' : 'bg-[#F46C38]';
           const badgeTextColor = isOrangeAccent ? 'text-[#000000]' : 'text-[#FFFFFF]';
           const accentIconColor = isOrangeAccent ? 'text-[#88be09]' : 'text-[#F46C38]';
+          const hasImage = Boolean(member.avatar && !member.avatar.startsWith('[[PLACEHOLDER'));
+          const isLastLoneCard = idx === TEAM_MEMBERS.length - 1 && TEAM_MEMBERS.length % 3 === 1;
 
           return (
             <div
               key={member.id}
-              className="group relative bg-[#FFFFFF] text-[#000000] rounded-[32px] p-6 shadow-2xl border border-zinc-200 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-[#F46C38]/20 flex flex-col justify-between overflow-hidden"
+              className={`group relative bg-[#FFFFFF] text-[#000000] rounded-[32px] p-6 shadow-2xl border border-zinc-200 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-[#F46C38]/20 flex flex-col justify-between overflow-hidden ${
+                isLastLoneCard ? 'md:col-span-2 md:max-w-md md:mx-auto lg:col-span-1 lg:col-start-2 lg:max-w-none w-full' : ''
+              }`}
             >
               {/* 1. Top Arc (Interchanged colors: Green arc on Orange box, Orange arc on Green box) */}
               <svg className="absolute top-0 left-0 w-48 h-40 pointer-events-none z-20 overflow-visible drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]">
@@ -57,7 +62,18 @@ export function TeamGrid({ className = '' }: { className?: string }) {
                 {/* Clean Solid/Gradient Colored Portrait Box */}
                 <div
                   className={`relative w-full aspect-[4/4.2] rounded-[24px] bg-gradient-to-b ${bgGradient} overflow-hidden shadow-inner mb-6`}
-                />
+                >
+                  {hasImage && (
+                    <Image
+                      src={member.avatar}
+                      alt={member.name}
+                      fill
+                      className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      priority={idx < 3}
+                    />
+                  )}
+                </div>
 
                 {/* Name */}
                 <h3 className="text-2xl font-extrabold text-[#000000] tracking-tight text-center mb-4">

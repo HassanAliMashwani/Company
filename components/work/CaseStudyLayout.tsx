@@ -32,7 +32,7 @@ export function CaseStudyLayout({ project, children }: CaseStudyLayoutProps) {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-xs font-mono font-bold px-4 py-2 rounded-full bg-[#F46C38] hover:bg-[#C5FF41] text-[#000000] transition-colors shadow-md"
           >
-            <span>Visit Live Platform</span>
+            <span>{project.liveUrl.includes('github.com') ? 'View Source Repository' : 'Visit Live Platform'}</span>
             <ExternalLink className="w-3.5 h-3.5" />
           </a>
         )}

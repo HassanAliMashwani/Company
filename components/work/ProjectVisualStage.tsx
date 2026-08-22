@@ -63,10 +63,10 @@ export function ProjectVisualStage({ project, isHovered = false }: ProjectVisual
 
   const isRealMobileImage =
     Boolean(project.mobileImage) &&
-    (project.mobileImage.startsWith('/') || project.mobileImage.startsWith('http'));
+    Boolean(project.mobileImage?.startsWith('/') || project.mobileImage?.startsWith('http'));
 
   const displayUrl = project.liveUrl
-    ? project.liveUrl.replace(/^https?:\/\//, '').replace(/\/$/, '')
+    ? project.liveUrl.replace(/^https?:\/\//, '').replace(/\.git$/, '').replace(/\/$/, '')
     : `${project.slug}.axiora.dev`;
 
   return (
@@ -103,7 +103,7 @@ export function ProjectVisualStage({ project, isHovered = false }: ProjectVisual
         )}
       </div>
 
-      {/* Main Showcase Stage (Desktop Webview with Mobile Device Showcase beside it) */}
+      {/* Main Showcase Stage (Desktop Webview with optional Mobile Device Showcase) */}
       <div className="relative z-10 w-full flex items-center justify-center my-1 min-w-0">
         {/* Desktop Webview Frame */}
         <div
@@ -148,23 +148,23 @@ export function ProjectVisualStage({ project, isHovered = false }: ProjectVisual
           )}
         </div>
 
-        {/* Mobile Device Frame (Offset Front Right) */}
-        <motion.div
-          ref={mobileFrameRef}
-          animate={{
-            x: isHovered && !reducedMotion ? -3 : 0,
-            y: isHovered && !reducedMotion ? -3 : 0,
-          }}
-          transition={{ duration: 0.3 }}
-          className="absolute -right-2 sm:-right-1 -bottom-2 w-[88px] sm:w-[110px] aspect-[9/18.5] bg-[#121110] rounded-2xl border-2 border-[#242426] shadow-2xl overflow-hidden flex flex-col z-20 pointer-events-none group-hover:border-[#F46C38]/60 transition-colors"
-        >
-          {/* Mobile Notch */}
-          <div className="h-3.5 bg-[#121110] border-b border-[#242426]/60 flex items-center justify-center shrink-0 z-10">
-            <div className="w-6 h-1 rounded-full bg-[#242426]" />
-          </div>
+        {/* Mobile Device Frame (Offset Front Right - Rendered when real mobile screenshot exists) */}
+        {isRealMobileImage && project.mobileImage && (
+          <motion.div
+            ref={mobileFrameRef}
+            animate={{
+              x: isHovered && !reducedMotion ? -3 : 0,
+              y: isHovered && !reducedMotion ? -3 : 0,
+            }}
+            transition={{ duration: 0.3 }}
+            className="absolute -right-2 sm:-right-1 -bottom-2 w-[88px] sm:w-[110px] aspect-[9/18.5] bg-[#121110] rounded-2xl border-2 border-[#242426] shadow-2xl overflow-hidden flex flex-col z-20 pointer-events-none group-hover:border-[#F46C38]/60 transition-colors"
+          >
+            {/* Mobile Notch */}
+            <div className="h-3.5 bg-[#121110] border-b border-[#242426]/60 flex items-center justify-center shrink-0 z-10">
+              <div className="w-6 h-1 rounded-full bg-[#242426]" />
+            </div>
 
-          {/* Mobile Screen (Real screenshot if provided, otherwise clean placeholder) */}
-          {isRealMobileImage ? (
+            {/* Mobile Screen */}
             <div className="flex-1 relative w-full h-full bg-[#0a0a0c] overflow-hidden">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
@@ -175,15 +175,8 @@ export function ProjectVisualStage({ project, isHovered = false }: ProjectVisual
               />
               <div className="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent pointer-events-none" />
             </div>
-          ) : (
-            <div className="flex-1 bg-gradient-to-b from-[#181716] via-[#100f13] to-[#0a0a0c] p-1.5 flex flex-col items-center justify-center text-center relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-tr from-[#F46C38]/10 via-transparent to-[#C5FF41]/10" />
-              <Smartphone className="w-4 h-4 text-zinc-600 mb-1" />
-              <div className="w-8 h-1 rounded bg-[#242426] mb-1" />
-              <div className="w-5 h-1 rounded bg-[#242426]" />
-            </div>
-          )}
-        </motion.div>
+          </motion.div>
+        )}
       </div>
 
       {/* Micro Info Chips Layer */}

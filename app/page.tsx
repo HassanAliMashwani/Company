@@ -23,8 +23,8 @@ const CraftSection = dynamic(
 );
 
 export default function HomePage() {
-  // Only show the top 3 featured projects on the homepage
-  const featuredProjects = PROJECTS.slice(0, 3);
+  // Show all featured case studies on the homepage
+  const featuredProjects = PROJECTS;
 
   return (
     <div className="space-y-12">
