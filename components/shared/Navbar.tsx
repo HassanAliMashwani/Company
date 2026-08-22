@@ -35,7 +35,7 @@ export function Navbar() {
           scrolled ? 'glass-nav py-3 shadow-2xl shadow-black/60' : 'bg-transparent py-6'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between relative">
           {/* Brand Logo */}
           <Link href="/" className="group flex items-center gap-3 focus:outline-none">
             <div className="relative w-9 h-9 flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
@@ -56,7 +56,13 @@ export function Navbar() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-1 bg-[#1A1A1A]/90 backdrop-blur-xl p-1.5 rounded-full border border-[#242426] shadow-xl">
+          <nav
+            className={`hidden md:flex items-center gap-1 p-1.5 rounded-full border transition-all duration-300 md:absolute md:left-1/2 md:-translate-x-1/2 ${
+              pathname === '/test'
+                ? 'bg-black/60 backdrop-blur-2xl border-white/10 shadow-[0_12px_35px_rgba(0,0,0,0.85)]'
+                : 'bg-[#1A1A1A]/90 backdrop-blur-xl border-[#242426] shadow-xl'
+            }`}
+          >
             {NAV_LINKS.map((link) => {
               const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href));
 
