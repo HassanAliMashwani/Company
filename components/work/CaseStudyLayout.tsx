@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Award, CheckCircle2, Layers, ShieldCheck, Terminal } from 'lucide-react';
+import { ArrowLeft, Award, CheckCircle2, ExternalLink, Layers, ShieldCheck, Terminal } from 'lucide-react';
 import { ProjectVisualStage } from '@/components/work/ProjectVisualStage';
 import { Project } from '@/lib/projects';
 
@@ -16,33 +16,59 @@ export function CaseStudyLayout({ project, children }: CaseStudyLayoutProps) {
   return (
     <article className="pt-28 pb-24 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
       {/* Back to Work link */}
-      <div className="mb-8">
+      <div className="mb-8 flex items-center justify-between">
         <Link
           href="/work"
-          className="inline-flex items-center gap-2 text-sm font-mono text-zinc-400 hover:text-cyan-400 transition-colors"
+          className="inline-flex items-center gap-2 text-sm font-mono text-zinc-400 hover:text-[#F46C38] transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Back to Work Archive</span>
         </Link>
+
+        {project.liveUrl && (
+          <a
+            href={project.liveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-xs font-mono font-bold px-4 py-2 rounded-full bg-[#F46C38] hover:bg-[#C5FF41] text-[#000000] transition-colors shadow-md"
+          >
+            <span>{project.liveUrl.includes('github.com') ? 'View Source Repository' : 'Visit Live Platform'}</span>
+            <ExternalLink className="w-3.5 h-3.5" />
+          </a>
+        )}
       </div>
 
       {/* Header Block */}
       <header className="mb-16">
-        <div className="flex flex-wrap gap-2 mb-4">
-          <span className="text-xs font-mono font-semibold px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-800/60 text-cyan-300">
-            {project.tier.toUpperCase()} CASE STUDY
-          </span>
-          {project.tags.map((tag) => (
-            <span
-              key={tag}
-              className="text-xs font-mono px-3 py-1 rounded-full bg-zinc-800 text-zinc-300 border border-zinc-700/50"
-            >
-              {tag}
+        <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
+          <div className="flex flex-wrap gap-2">
+            <span className="text-xs font-mono font-semibold px-3 py-1 rounded-full bg-orange-950/80 border border-orange-800/60 text-[#F46C38]">
+              {project.tier.toUpperCase()} CASE STUDY
             </span>
-          ))}
+            {project.tags.map((tag) => (
+              <span
+                key={tag}
+                className="text-xs font-mono px-3 py-1 rounded-full bg-[#151312] text-[#998F8F] border border-[#242426]"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+
+          {project.liveUrl && (
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="sm:hidden inline-flex items-center gap-1.5 text-xs font-mono font-bold text-[#F46C38] hover:text-[#C5FF41]"
+            >
+              <span>{project.liveUrl.replace(/^https?:\/\//, '').replace(/\/$/, '')}</span>
+              <ExternalLink className="w-3.5 h-3.5" />
+            </a>
+          )}
         </div>
 
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-6">
+        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white mb-6">
           {project.name}
         </h1>
 

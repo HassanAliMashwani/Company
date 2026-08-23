@@ -32,22 +32,22 @@ export function ProjectCard({ project, index, isAlternating = true }: ProjectCar
       <div
         className={`flex flex-col ${
           isAlternating ? (isEven ? 'lg:flex-row-reverse' : 'lg:flex-row') : 'flex-col'
-        } items-stretch min-h-[440px]`}
+        } items-center`}
       >
-        {/* Right Visual Panel (Product Showcase Stage) */}
-        <div className="lg:w-7/12 relative p-3 sm:p-4 flex items-stretch">
+        {/* Visual Showcase Panel */}
+        <div className="w-full lg:w-7/12 relative p-3.5 sm:p-5 flex items-center justify-center min-w-0">
           <ProjectVisualStage project={project} isHovered={isHovered} />
         </div>
 
-        {/* Left Content Area */}
-        <div className="lg:w-5/12 p-8 sm:p-10 flex flex-col justify-between">
-          <div>
+        {/* Content Area */}
+        <div className="w-full lg:w-5/12 p-6 sm:p-8 lg:p-10 flex flex-col justify-between min-w-0">
+          <div className="min-w-0 mb-6">
             {/* Header metadata info */}
-            <div className="flex items-center justify-between gap-4 mb-4">
+            <div className="flex flex-wrap items-center justify-between gap-3 mb-4 min-w-0">
               <span className="font-mono text-xs text-[#F46C38] tracking-widest uppercase font-extrabold">
                 0{index + 1} — {project.year}
               </span>
-              <div className="flex flex-wrap gap-1.5">
+              <div className="flex flex-wrap gap-1.5 min-w-0">
                 {project.tags.map((tag) => (
                   <span
                     key={tag}
@@ -60,27 +60,27 @@ export function ProjectCard({ project, index, isAlternating = true }: ProjectCar
             </div>
 
             {/* Title */}
-            <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-[#FFFFFF] group-hover:text-[#F46C38] transition-colors mb-3">
+            <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-[#FFFFFF] group-hover:text-[#F46C38] transition-colors mb-3 break-words">
               {project.name}
             </h3>
 
             {/* Summary */}
-            <p className="text-sm text-[#998F8F] leading-relaxed mb-6">
+            <p className="text-sm text-[#998F8F] leading-relaxed break-words">
               {project.summary}
             </p>
           </div>
 
-          <div>
-            {/* Outcome Pill */}
+          <div className="min-w-0">
+            {/* Outcome Pill (Safely wrapped within container) */}
             {project.outcome && (
-              <div className="mb-6 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-[#F46C38] text-[#000000] text-xs font-extrabold shadow-md">
-                <Award className="w-4 h-4 flex-shrink-0" />
-                <span className="truncate">{project.outcome}</span>
+              <div className="mb-6 flex items-start gap-2.5 px-3.5 py-2 rounded-xl bg-[#F46C38] text-[#000000] text-xs font-extrabold max-w-full shadow-md">
+                <Award className="w-4 h-4 flex-shrink-0 mt-0.5" />
+                <span className="leading-snug break-words">{project.outcome}</span>
               </div>
             )}
 
             {/* Tech Stack Pills */}
-            <div className="flex flex-wrap gap-1.5 mb-6">
+            <div className="flex flex-wrap gap-1.5 mb-6 min-w-0">
               {project.stack.map((tech) => (
                 <span
                   key={tech}
@@ -91,14 +91,16 @@ export function ProjectCard({ project, index, isAlternating = true }: ProjectCar
               ))}
             </div>
 
-            {/* Case Study Link CTA */}
-            <Link
-              href={`/work/${project.slug}`}
-              className="inline-flex items-center gap-2 text-sm font-bold text-[#F46C38] hover:text-[#C5FF41] transition-colors group/link"
-            >
-              <span>Explore Full Case Study</span>
-              <ArrowUpRight className="w-4 h-4 transition-transform group-hover/link:translate-x-1 group-hover/link:-translate-y-1" />
-            </Link>
+            {/* Action CTA */}
+            <div className="pt-2 min-w-0">
+              <Link
+                href={`/work/${project.slug}`}
+                className="inline-flex items-center gap-2 text-sm font-bold text-[#F46C38] hover:text-[#C5FF41] transition-colors group/link"
+              >
+                <span>Explore Full Case Study</span>
+                <ArrowUpRight className="w-4 h-4 transition-transform group-hover/link:translate-x-1 group-hover/link:-translate-y-1" />
+              </Link>
+            </div>
           </div>
         </div>
       </div>
