@@ -2,7 +2,19 @@ import React from 'react';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
-import { Hero } from '@/components/hero/Hero';
+const VolumetricStudioDemo = dynamic(
+  () => import('@/components/volumetric-studio-demo'),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="min-h-screen w-full bg-transparent flex items-center justify-center">
+        <div className="text-xs font-mono text-zinc-500 animate-pulse">
+          Initializing Volumetric Lighting Stage...
+        </div>
+      </div>
+    ),
+  }
+);
 import { ProjectCard } from '@/components/work/ProjectCard';
 import { CapabilityMatrix } from '@/components/capabilities/CapabilityMatrix';
 import { TeamGrid } from '@/components/team/TeamGrid';
@@ -29,10 +41,10 @@ export default function HomePage() {
   return (
     <div className="space-y-12">
       {/* 1. Hero Section */}
-      <Hero />
+      <VolumetricStudioDemo />
 
       {/* 2. Featured Work Preview Section */}
-      <section id="work" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-zinc-800/80">
+      <section id="work" className="py-20 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto rounded-3xl bg-gradient-to-br from-[#2A2A2E] to-[#1A1A1C] border border-[#3A3A3E] shadow-2xl my-12 relative overflow-hidden">
         <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 mb-12">
           <div>
             <span className="text-xs font-mono font-semibold tracking-widest text-[#F46C38] uppercase">

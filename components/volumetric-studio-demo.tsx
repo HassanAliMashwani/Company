@@ -7,7 +7,7 @@ import { VolumetricStudio } from "@/components/ui/volumetric-studio";
 
 export default function VolumetricStudioDemo() {
   return (
-    <main className="w-full min-h-screen relative bg-black overflow-hidden font-sans border-b border-white/10 shadow-2xl">
+    <main className="w-full min-h-screen relative bg-transparent overflow-hidden font-sans border-b border-white/10 shadow-2xl">
       <VolumetricStudio className="min-h-screen flex flex-col justify-between">
         {/* DUAL DIMENSION HERO UI */}
         <div className="flex flex-col items-center justify-between w-full min-h-screen text-center px-4 sm:px-6 pt-36 sm:pt-44 pb-16 relative z-10 pointer-events-none max-w-6xl mx-auto">

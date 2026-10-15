@@ -13,6 +13,7 @@ import {
   Copy,
   Check,
   Zap,
+  Image as ImageIcon,
 } from 'lucide-react';
 
 const COLOR_THEMES = [
@@ -34,6 +35,13 @@ const EASING_MODES = [
   { id: 'glow', label: 'Pulse Glow', scale: 1.0 },
 ];
 
+const BACKGROUNDS = [
+  { id: 'galaxy', label: 'Dark Galaxy', url: '/backgrounds/bg_galaxy_dark.jpg' },
+  { id: 'abstract', label: 'Abstract Glow', url: '/backgrounds/bg_abstract_dark.jpg' },
+  { id: 'nebula', label: 'Space Nebula', url: '/backgrounds/bg_nebula_dark.jpg' },
+  { id: 'cyberpunk', label: 'Cyberpunk Grid', url: '/backgrounds/bg_cyberpunk_dark.jpg' },
+];
+
 export function CraftSection({ className = '' }: { className?: string }) {
   // Typography state
   const [fontWeight, setFontWeight] = useState<number>(700);
@@ -49,6 +57,9 @@ export function CraftSection({ className = '' }: { className?: string }) {
   // Motion state
   const [selectedEasing, setSelectedEasing] = useState(EASING_MODES[0]);
 
+  // Environment state
+  const [selectedBg, setSelectedBg] = useState(BACKGROUNDS[0]);
+
   // Copy code feedback
   const [copied, setCopied] = useState<boolean>(false);
 
@@ -58,7 +69,8 @@ font-weight: ${fontWeight};
 font-size: ${fontSize}px;
 letter-spacing: ${letterSpacing}px;
 accent-color: ${selectedTheme.hex};
-motion-type: ${selectedEasing.label};`;
+motion-type: ${selectedEasing.label};
+environment: ${selectedBg.label};`;
     navigator.clipboard.writeText(codeSnippet);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
@@ -79,8 +91,8 @@ motion-type: ${selectedEasing.label};`;
         </p>
       </div>
 
-      {/* 4 Interactive Control Panels */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+      {/* 5 Interactive Control Panels */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-12">
         {/* Panel 01: Typography Controls */}
         <div className="p-6 rounded-2xl bg-[#1A1A1A] border border-[#242426] flex flex-col justify-between shadow-xl">
           <div>
@@ -212,6 +224,46 @@ motion-type: ${selectedEasing.label};`;
             </div>
           </div>
         </div>
+
+        {/* Panel 05: Environment Texture */}
+        <div className="p-6 rounded-2xl bg-[#1A1A1A] border border-[#242426] flex flex-col justify-between shadow-xl">
+          <div>
+            <div className="flex items-center gap-2 mb-4">
+              <ImageIcon className="w-4 h-4 text-[#F46C38]" />
+              <span className="text-xs font-mono font-bold text-[#FFFFFF] uppercase">
+                05. Environment
+              </span>
+            </div>
+            <div className="grid grid-cols-2 gap-2">
+              {BACKGROUNDS.map((bg) => (
+                <button
+                  key={bg.id}
+                  onClick={() => setSelectedBg(bg)}
+                  title={bg.label}
+                  className={`relative aspect-video rounded-xl border overflow-hidden group transition-all ${
+                    selectedBg.id === bg.id
+                      ? 'border-[#C5FF41] ring-2 ring-[#C5FF41]/20'
+                      : 'border-[#242426] hover:border-[#F46C38]'
+                  }`}
+                >
+                  {bg.url ? (
+                    <div 
+                      className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
+                      style={{ backgroundImage: `url('${bg.url}')` }}
+                    />
+                  ) : (
+                    <div className="absolute inset-0 bg-[#151312]" />
+                  )}
+                  {selectedBg.id === bg.id && (
+                    <div className="absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-sm">
+                      <Check className="w-5 h-5 text-[#C5FF41]" />
+                    </div>
+                  )}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* FINAL SYNTHESIZED REAL ELEMENT OUTPUT */}
@@ -235,7 +287,10 @@ motion-type: ${selectedEasing.label};`;
         </div>
 
         {/* The Synthesized Element Display Box */}
-        <div className="p-8 rounded-2xl bg-[#151312] border border-[#242426] flex flex-col md:flex-row items-center justify-between gap-8 min-h-[180px]">
+        <div 
+          className="p-8 rounded-2xl bg-[#151312] border border-[#242426] flex flex-col md:flex-row items-center justify-between gap-8 min-h-[180px] bg-cover bg-center bg-no-repeat transition-all duration-500"
+          style={{ backgroundImage: selectedBg.url ? `url('${selectedBg.url}')` : 'none' }}
+        >
           {/* Dynamic Typography & Theme Rendering */}
           <div className="max-w-xl">
             <h4
@@ -250,7 +305,7 @@ motion-type: ${selectedEasing.label};`;
               Precision Engineering & Design System
             </h4>
             <p className="text-xs text-[#998F8F] font-mono mt-2">
-              Configured with {selectedTheme.name} theme token, {fontWeight} font weight, and {selectedEasing.label}.
+              Configured with {selectedTheme.name} theme token, {fontWeight} font weight, {selectedEasing.label}, and {selectedBg.label} environment.
             </p>
           </div>
 

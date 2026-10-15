@@ -30,9 +30,8 @@ export function ProjectCard({ project, index, isAlternating = true }: ProjectCar
       className="group relative bg-[#1A1A1A] border border-[#242426] rounded-3xl overflow-hidden hover:border-[#F46C38]/50 transition-colors duration-300 shadow-2xl"
     >
       <div
-        className={`flex flex-col ${
-          isAlternating ? (isEven ? 'lg:flex-row-reverse' : 'lg:flex-row') : 'flex-col'
-        } items-center`}
+        className={`flex flex-col ${isAlternating ? (isEven ? 'lg:flex-row-reverse' : 'lg:flex-row') : 'flex-col'
+          } items-center`}
       >
         {/* Visual Showcase Panel */}
         <div className="w-full lg:w-7/12 relative p-3.5 sm:p-5 flex items-center justify-center min-w-0">

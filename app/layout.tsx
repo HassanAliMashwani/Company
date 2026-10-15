@@ -27,7 +27,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${sansFont.variable} ${monoFont.variable} dark`}>
-      <body className="bg-[#09090b] text-[#f4f4f5] antialiased">
+      <body className="bg-[#1A1A1C] text-[#f4f4f5] antialiased">
         <SmoothScrollProvider>
           <div className="relative min-h-screen flex flex-col justify-between">
             <Navbar />

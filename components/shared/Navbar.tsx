@@ -32,7 +32,7 @@ export function Navbar() {
     <>
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled ? 'glass-nav py-3 shadow-2xl shadow-black/60' : 'bg-transparent py-6'
+          scrolled ? 'bg-black/40 backdrop-blur-xl border-b border-white/10 py-3 shadow-2xl shadow-black/60' : 'bg-transparent py-6'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between relative">
@@ -57,11 +57,7 @@ export function Navbar() {
 
           {/* Desktop Navigation */}
           <nav
-            className={`hidden md:flex items-center gap-1 p-1.5 rounded-full border transition-all duration-300 md:absolute md:left-1/2 md:-translate-x-1/2 ${
-              pathname === '/test'
-                ? 'bg-black/60 backdrop-blur-2xl border-white/10 shadow-[0_12px_35px_rgba(0,0,0,0.85)]'
-                : 'bg-[#1A1A1A]/90 backdrop-blur-xl border-[#242426] shadow-xl'
-            }`}
+            className="hidden md:flex items-center gap-1 p-1.5 rounded-full border border-white/10 bg-black/20 backdrop-blur-2xl shadow-[0_8px_32px_rgba(0,0,0,0.5)] transition-all duration-300 md:absolute md:left-1/2 md:-translate-x-1/2"
           >
             {NAV_LINKS.map((link) => {
               const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href));

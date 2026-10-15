@@ -73,7 +73,7 @@ export function CapabilityMatrix() {
   ).slice(0, 3);
 
   return (
-    <section id="capabilities" className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-[#242426]">
+    <section id="capabilities" className="py-24 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto rounded-3xl bg-gradient-to-tl from-[#242428] to-[#1A1A1C] border border-[#333338] shadow-2xl my-12 relative overflow-hidden">
       <div className="mb-12">
         <span className="text-xs font-mono font-extrabold tracking-widest text-[#F46C38] uppercase">
           Proven Engineering Competencies

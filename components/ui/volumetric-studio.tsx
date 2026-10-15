@@ -47,7 +47,7 @@ function Room({
   return (
     <div
       aria-hidden
-      className={`absolute inset-0 overflow-hidden bg-black pointer-events-none ${className}`}
+      className={`absolute inset-0 overflow-hidden bg-transparent pointer-events-none ${className}`}
     >
       <div
         className="absolute inset-0"
@@ -323,7 +323,7 @@ export const VolumetricStudio = ({
     return () => { mounted = false; };
   }, []);
   return (
-    <section className={cn("relative w-full h-full min-h-[600px] bg-black overflow-hidden font-sans", className)}>
+    <section className={cn("relative w-full h-full min-h-[600px] bg-transparent overflow-hidden font-sans", className)}>
       <Room
         lightsOn={lightsOn}
         intensity={1}
